@@ -67,4 +67,42 @@ using color = vec3;  // type alias of vec3 for color #RGB
 
 // we also need utility functions to handle different operations performed on the vec3 class like the stream operator >> << or the arithmetic operators
 
+inline std::ostream &operator<<(std::ostream &out, const vec3 &v) {
+    out << v[0] << ' ' << v[1] << ' ' << v[2];
+}
+
+inline vec3 operator+(const vec3 &u, const vec3 &v) {
+    return vec3(u[0] + v[0], u[1] + v[1], u[2] + v[2]);
+}
+
+inline vec3 operator-(const vec3 &u, const vec3 &v) {
+    return vec3(u[0] - v[0], u[1] - v[1], u[2] - v[2]);
+}
+
+inline vec3 operator*(const vec3 &u, const vec3 &v) {
+    return vec3(u[0] * v[0], u[1] * v[1], u[2] * v[2]);
+}
+
+inline vec3 operator*(double t, const vec3 &v) {
+    return vec3(t * v[0], t * v[1], t * v[2]);
+}
+
+inline vec3 operator/(const vec3 &v, double t) {
+    return (1 / t) * v;
+}
+
+inline double dot(const vec3 &u, const vec3 &v) {
+    return u[0] * v[0] + u[1] * v[1] + u[2] * v[2];
+}
+
+inline vec3 cross(const vec3 &u, const vec3 &v) {
+    return vec3(u[1] * v[2] - u[2] * v[1],
+                u[2] * v[0] - u[0] * v[2],
+                u[0] * v[1] - u[1] * v[0]);
+}
+
+inline vec3 unit_vector(vec3 v) {
+    return v / v.length();
+}
+
 #endif
